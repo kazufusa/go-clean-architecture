@@ -19,7 +19,8 @@ func putHandler(w http.ResponseWriter, r *http.Request) {
 	b, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 	if err != nil {
-		http.Error(w, err.Error(), 500)
+		// return http status code 500
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 	value.Value = string(b)
