@@ -6,12 +6,13 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/kazufusa/go-clean-architecture/domain/model"
 )
 
-var value string
+var value model.Value
 
 func getHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, value)
+	fmt.Fprintf(w, value.Value)
 }
 
 func putHandler(w http.ResponseWriter, r *http.Request) {
@@ -21,7 +22,7 @@ func putHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	value = string(b)
+	value.Value = string(b)
 }
 
 func main() {
